@@ -51,18 +51,6 @@ a:hover {
     color: #57b846;
 }
 
-
-/*---------------------------------------------*/
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0px;
-}
-
 p {
     font-family: Poppins-Regular;
     font-size: 14px;
@@ -77,65 +65,9 @@ li {
     list-style-type: none;
 }
 
-
-/*---------------------------------------------*/
-
 input {
     outline: none;
     border: none;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield;
-    appearance: none;
-    -webkit-appearance: none;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-
-textarea {
-    outline: none;
-    border: none;
-}
-
-textarea:focus,
-input:focus {
-    border-color: transparent !important;
-}
-
-input:focus::-webkit-input-placeholder {
-    color: transparent;
-}
-
-input:focus:-moz-placeholder {
-    color: transparent;
-}
-
-input:focus::-moz-placeholder {
-    color: transparent;
-}
-
-input:focus:-ms-input-placeholder {
-    color: transparent;
-}
-
-textarea:focus::-webkit-input-placeholder {
-    color: transparent;
-}
-
-textarea:focus:-moz-placeholder {
-    color: transparent;
-}
-
-textarea:focus::-moz-placeholder {
-    color: transparent;
-}
-
-textarea:focus:-ms-input-placeholder {
-    color: transparent;
 }
 
 input::-webkit-input-placeholder {
@@ -146,27 +78,7 @@ input:-moz-placeholder {
     color: #999999;
 }
 
-input::-moz-placeholder {
-    color: #999999;
-}
-
 input:-ms-input-placeholder {
-    color: #999999;
-}
-
-textarea::-webkit-input-placeholder {
-    color: #999999;
-}
-
-textarea:-moz-placeholder {
-    color: #999999;
-}
-
-textarea::-moz-placeholder {
-    color: #999999;
-}
-
-textarea:-ms-input-placeholder {
     color: #999999;
 }
 
@@ -174,9 +86,6 @@ label {
     display: block;
     margin: 0;
 }
-
-
-/*---------------------------------------------*/
 
 button {
     outline: none !important;
@@ -188,14 +97,6 @@ button:hover {
     cursor: pointer;
 }
 
-iframe {
-    border: none !important;
-}
-
-
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
-
 .txt1 {
     font-family: Poppins-Regular;
     font-size: 13px;
@@ -203,10 +104,6 @@ iframe {
     color: #999999;
     cursor: pointer;
 }
-
-
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
 
 .limiter {
     width: 100%;
