@@ -57,7 +57,7 @@ regBtn.addEventListener('click', () => {
             if (signupCity.value.trim() != "") {
                 if (numReg.test(signupNum.value)) {
                     if (signupPass.value > 8) {
-                        swal("Good job!", "You clicked the button!", "success");
+                        swal("Sucesfully Registered", "", "success");
 
                         createUserWithEmailAndPassword(auth, signupEmail.value, signupPass.value)
                             .then((userCredential) => {
