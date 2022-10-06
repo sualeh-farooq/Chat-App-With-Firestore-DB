@@ -41,7 +41,9 @@ window.onload = () => {
         if (user) {
             const uid = user.uid;
             console.log(`User is Sign In`, user)
+            window.location.href = '/pages/profile.html'
         } else if (!user) {
+            // window.location.href = '/index.html'
             console.log(`User Sign Out`)
         }
     })
