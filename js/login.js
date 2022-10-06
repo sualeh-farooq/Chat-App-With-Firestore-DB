@@ -33,24 +33,14 @@ function login() {
             // Signed in 
             const user = userCredential.user;
             console.log('User Login', user)
-                // window.location.href = 'profile.html'
-                // ...
+
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorMessage)
-
-
-            // if (errorMessage === `Firebase: Error (auth/invalid-email).`) {
-            //     swal("Email Not Found", "", "error");
-            // }
-
-
         });
 }
-
-
 
 
 window.onload = () => {
@@ -60,7 +50,6 @@ window.onload = () => {
             console.log(`User is Sign In`, user)
             window.location.href = '/pages/profile.html'
         } else if (!user) {
-            // window.location.href = '/index.html'
             console.log(`User Sign Out`)
         }
     })

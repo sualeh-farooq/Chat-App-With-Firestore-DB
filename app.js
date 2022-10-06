@@ -36,6 +36,17 @@ let numReg = /^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,5}$/
 
 const regBtn = document.getElementById('register-btn')
 
+window.onload = () => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            console.log(`User is Sign In`, user)
+        } else if (!user) {
+            console.log(`User Sign Out`)
+        }
+    })
+}
+
 
 
 regBtn.addEventListener('click', () => {
@@ -77,33 +88,3 @@ regBtn.addEventListener('click', () => {
         swal("Invalid Name", "Type Your Name Correctly", "error");
     }
 })
-
-
-
-
-
-
-
-// sendEmailVerification(auth.currentUser)
-//     .then(() => {
-//         // Email verification sent!
-//         // ...
-//     });
-
-
-
-window.onload = () => {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const uid = user.uid;
-            console.log(`User is Sign In`, user)
-                // window.location.href = '/profile.html'
-        } else if (!user) {
-            // window.location.href = '/index.html'
-            console.log(`User Sign Out`)
-        }
-    })
-}
-
-
-//Login Function
