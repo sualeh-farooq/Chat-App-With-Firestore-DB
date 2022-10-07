@@ -39,6 +39,22 @@ function login() {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorMessage)
+
+
+            if (errorMessage === `Firebase: Error (auth/invalid-email).`) {
+                swal("Invalid Email", "Type Your Email Correctly", "error");
+            }
+            if (errorMessage === `Firebase: Error (auth/internal-error).`) {
+                swal("Invalid Login Credentials", " ", "error")
+            }
+
+            if (errorMessage === `Firebase: Error (auth/wrong-password).`) {
+                swal('Wrong Password', "", "error")
+            }
+
+            if (errorMessage === `Firebase: Error (auth/user-not-found).`) {
+                swal('User Not Found', "Please Register Yourself First", 'error')
+            }
         });
 }
 
