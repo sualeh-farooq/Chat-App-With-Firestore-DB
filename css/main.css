@@ -420,6 +420,101 @@ input.input100 {
     color: #57b846;
 }
 
+.profile {
+    background-color: wheat;
+    width: 100%;
+    height: 100%;
+    border-style: double;
+    flex: 3;
+}
+
+.cr-user {
+    background-color: #57b846;
+    width: max-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2%;
+    padding: 0px 10px;
+}
+
+.user-img {
+    width: 120px;
+    height: 110px;
+    border-radius: 50%;
+}
+
+.friends {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    margin-top: 20%;
+}
+
+.cr-user h6 {
+    margin-top: 10%;
+}
+
+.friends h6 {
+    text-align: center;
+}
+
+.friend-list {
+    text-align: center;
+    border: 2px solid white;
+}
+
+.btn-dark {
+    width: max-content !important;
+    height: max-content !important;
+    padding: 2px !important;
+}
+
+.profile-con {
+    background-color: wheat;
+    display: flex;
+    border: 5px solid black;
+    height: 100%;
+}
+
+.chat-win {
+    background-color: red;
+    width: 100%;
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 0;
+}
+
+.friend-name {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+
+.friend-list li {
+    margin-top: 10px;
+}
+
+.friend-name h6 {
+    font-size: large !important;
+}
+
+.send-btn {
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+#message {
+    width: 100%;
+    padding: 5px;
+}
+
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
