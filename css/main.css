@@ -425,11 +425,11 @@ input.input100 {
     width: 100%;
     height: 100%;
     border-style: double;
-    flex: 3;
+    flex: 2;
 }
 
 .cr-user {
-    background-color: #57b846;
+    background-color: rgb(245, 215, 159);
     width: max-content;
     height: 100%;
     display: flex;
@@ -448,7 +448,7 @@ input.input100 {
 .friends {
     width: 100%;
     height: 100%;
-    background-color: red;
+    /* background-color: red; */
     margin-top: 20%;
 }
 
@@ -479,7 +479,7 @@ input.input100 {
 }
 
 .chat-win {
-    background-color: red;
+    /* background-color: red; */
     width: 100%;
     flex: 10;
     display: flex;

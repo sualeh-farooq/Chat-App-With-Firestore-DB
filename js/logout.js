@@ -7,6 +7,14 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 
+import {
+    doc,
+    getFirestore,
+    getDoc,
+
+} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyCAZuDsUDZZwE4ecSqRq4cw3zTxVKdPHnw",
@@ -18,12 +26,15 @@ const firebaseConfig = {
 }
 
 
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
+const db = getFirestore()
 
 
 let logOut = document.getElementById(`logout-btn`)
 
+//Logout Button 
 logOut.addEventListener('click', () => {
     signOut(auth).then(() => {
         console.log(`Sign Out Sucessful`)
@@ -39,9 +50,28 @@ window.onload = () => {
         if (user) {
             const uid = user.uid;
             console.log(`User is Sign In`, user)
+            getData(user)
         } else if (!user) {
             window.location.href = '/pages/login.html'
             console.log(`User Sign Out`)
         }
     })
+}
+
+
+
+
+const getData = async(user) => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        console.log(docSnap.data().email)
+        let self = document.getElementById('current-user')
+        self.innerHTML = `<b> Current User : ${docSnap.data().name}</b>`
+            // showFriends(docSnap.data().name, user.uid, docSnap.data().email)
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
 }

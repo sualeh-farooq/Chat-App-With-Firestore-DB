@@ -9,6 +9,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 
+import {
+    doc,
+    setDoc,
+    getFirestore,
+} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyCAZuDsUDZZwE4ecSqRq4cw3zTxVKdPHnw",
@@ -22,6 +29,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
+const db = getFirestore()
 let signupName = document.getElementById('signupName')
 let signupEmail = document.getElementById('signupEmail')
 let signupCity = document.getElementById('signupCity')
@@ -38,32 +46,40 @@ const regBtn = document.getElementById('register-btn')
 
 window.onload = () => {
     onAuthStateChanged(auth, (user) => {
+
         if (user) {
             const uid = user.uid;
             console.log(`User is Sign In`, user)
             window.location.href = '/pages/profile.html'
         } else if (!user) {
-            // window.location.href = '/index.html'
             console.log(`User Sign Out`)
         }
     })
 }
 
 
-
-regBtn.addEventListener('click', () => {
+// Registration using Regex
+regBtn.addEventListener('click', async() => {
     if (signupName.value) {
         if (emailReg.test(signupEmail.value)) {
             if (signupCity.value.trim() != "") {
                 if (numReg.test(signupNum.value)) {
                     if (signupPass.value > 8) {
-                        swal("Sucesfully Registered", "", "success");
 
+                        //Added email to the authentication
                         createUserWithEmailAndPassword(auth, signupEmail.value, signupPass.value)
-                            .then((userCredential) => {
+                            .then(async(userCredential) => {
                                 const user = userCredential.user
-                                console.log('UserSucessfully Registered ', user)
 
+                                //Setting Data in firestore database
+                                await setDoc(doc(db, "users", user.uid), {
+                                    name: signupName.value,
+                                    email: signupEmail.value,
+                                    city: signupCity.value,
+                                    uid: user.uid
+                                });
+                                console.log('UserSucessfully Registered ', user)
+                                swal("Sucesfully Registered", "", "success");
                             })
                             .catch((error) => {
                                 const errorCode = error.code;
@@ -71,6 +87,8 @@ regBtn.addEventListener('click', () => {
                                 console.log(`error ==> ${errorMessage}`)
 
                             })
+
+
 
                     } else {
                         swal("Invalid Password", "Password Must contains 8 Characters", "error");
