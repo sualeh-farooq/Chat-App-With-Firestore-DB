@@ -108,3 +108,66 @@ regBtn.addEventListener('click', async() => {
         swal("Invalid Name", "Type Your Name Correctly", "error");
     }
 })
+
+
+//showing the friends 
+async function showFriends(name, uid) {
+    const citiesRef = collection(db, "users");
+    const q = query(citiesRef, where("name", "!=", name));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        console.log(doc.data().name);
+        let users = document.getElementById('users')
+        users.innerHTML += ` <li> ${doc.data().name} <button id='chat-btn' onclick= 'startChat("${doc.id}","${doc.data().name}","${name}","${uid}")'> Start Chat </button> </li>`
+    })
+
+}
+
+let unsubscribe;
+//Start Chat function
+async function startChat(friendId, friendName, currentName, uid) {
+    if (unsubscribe) {
+        unsubscribe()
+    }
+    let chatWith = document.getElementById("chat-with");
+    chatWith.innerHTML = friendName;
+    let send = document.getElementById('send')
+    let message = document.getElementById('message')
+
+    let chatid;
+    //Creating New ID for collection of messages in database
+    if (friendId < uid) {
+        chatid = `${friendId}${uid}`
+    } else {
+        chatid = `${uid}${friendId}`
+    }
+    console.log(chatid)
+
+    //loading all chats b/w two friends
+    loadChats(chatid)
+    send.addEventListener('click', async() => {
+        let allMessages = document.getElementById("all-messages");
+        allMessages.innerHTML = "";
+        await addDoc(collection(db, "messages"), {
+            senderName: currentName,
+            senderId: uid,
+            receiverName: friendName,
+            receiverId: friendId,
+            chat_id: chatid,
+            message: message.value
+        });
+    })
+}
+
+
+const loadChats = (chatID) => {
+
+    const q = query(collection(db, "messages"), where("chat_id", "==", chatID));
+    let allMessages = document.getElementById("all-messages");
+    unsubscribe = onSnapshot(q, (querySnapshot) => {
+        allMessages.innerHTML = "";
+        querySnapshot.forEach((doc) => {
+            allMessages.innerHTML += `<li> ${doc.data().senderName} :  ${doc.data().message}</li>`;
+        });
+    });
+}
