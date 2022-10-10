@@ -68,7 +68,7 @@ const getData = async(user) => {
         console.log("Document data:", docSnap.data());
         console.log(docSnap.data().email)
         let self = document.getElementById('current-user')
-        self.innerHTML = `<b> Current User : ${docSnap.data().name}</b>`
+        self.innerHTML = ` Current User :  <b> ${docSnap.data().name}</b>`
             // showFriends(docSnap.data().name, user.uid, docSnap.data().email)
     } else {
         // doc.data() will be undefined in this case
